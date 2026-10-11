@@ -32,7 +32,7 @@ function logout() {
 // Directory Search & Listing Management
 async function fetchUsers() {
     try {
-        const response = await fetch('${BACKEND_URL}/api/users');
+        const response = await fetch(`${BACKEND_URL}/api/users`);
         allCachedUsers = await response.json();
         renderUsers(allCachedUsers);
     } catch (error) { 
