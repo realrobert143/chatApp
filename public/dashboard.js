@@ -9,7 +9,7 @@ const BACKEND_URL = 'https://chatapp-hsyo.onrender.com' || 'http//localhost:5000
 
 
 
-const DEFAULT_AVATAR = 'default_profile_pic.png';
+const DEFAULT_AVATAR = '/public/default_profile_pic.png';
 
 // Authentication Verification Route
 if (!loggedInUser) {
@@ -99,7 +99,7 @@ function selectUser(id, name, avatar) {
 async function loadChatHistory() {
     if (!selectedUserId) return;
     try {
-        const response = await fetch(`${BACKEND_URL}${loggedInUser.id}/${selectedUserId}`);
+        const response = await fetch(`${BACKEND_URL}${loggedInUser.id}${selectedUserId}`);
         const messages = await response.json();
         const msgBox = document.getElementById('messages-box');
         
