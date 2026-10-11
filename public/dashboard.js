@@ -9,7 +9,7 @@ const BACKEND_URL = 'https://chatapp-hsyo.onrender.com' || 'http//localhost:5000
 
 
 
-const DEFAULT_AVATAR = 'resource/default_profile_pic.png';
+const DEFAULT_AVATAR = 'default_profile_pic.png';
 
 // Authentication Verification Route
 if (!loggedInUser) {
