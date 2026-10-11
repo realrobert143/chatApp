@@ -99,7 +99,7 @@ function selectUser(id, name, avatar) {
 async function loadChatHistory() {
     if (!selectedUserId) return;
     try {
-        const response = await fetch(`${BACKEND_URL}${loggedInUser.id}${selectedUserId}`);
+        const response = await fetch(`${BACKEND_URL}/${loggedInUser.id}${selectedUserId}`);
         const messages = await response.json();
         const msgBox = document.getElementById('messages-box');
         
