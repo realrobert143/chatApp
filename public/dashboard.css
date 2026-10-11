@@ -1,0 +1,386 @@
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+    font-family: 'Segoe UI', 'Montserrat', sans-serif; 
+}
+
+body { 
+    display: flex; 
+    height: 100vh; 
+    background-color: #1e252b; /* Matching Dark Grey page background */
+    color: #ffffff;
+}
+
+/* Sidebar Structural Matrix */
+.sidebar { 
+    width: 320px; 
+    background-color: #000000; /* Pure Black Sidebar background */
+    border-right: 1px solid #1e252b; 
+    display: flex; 
+    flex-direction: column; 
+}
+
+.user-profile { 
+    padding: 15px 20px; 
+    background: linear-gradient(135deg, #0b1a30, #00b4d8); /* Midnight Blue to Cyan Gradient */
+    color: white; 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+    position: relative; 
+}
+
+.profile-avatar { 
+    width: 45px; 
+    height: 45px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    border: 2px solid #ffffff; 
+    cursor: pointer; 
+    background: #1e252b; 
+}
+
+.profile-info { 
+    flex: 1; 
+}
+
+.profile-info h3 { 
+    font-size: 1rem; 
+    font-weight: 600;
+}
+
+.logout-btn { 
+    background: rgba(255, 255, 255, 0.15); 
+    border: 1px solid rgba(255, 255, 255, 0.3); 
+    color: white; 
+    padding: 4px 8px; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    font-size: 11px; 
+    margin-top: 4px; 
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.logout-btn:hover { 
+    background: rgba(255, 255, 255, 0.3);
+    border-color: #ffffff;
+}
+
+/* Contacts Query Optimization Panel */
+.search-box { 
+    padding: 10px 15px; 
+    border-bottom: 1px solid #1e252b; 
+    background-color: #0a0e12; 
+}
+
+.search-box input { 
+    width: 100%; 
+    padding: 8px 14px; 
+    background-color: #1e252b; /* Dark Grey Input */
+    border: 1px solid #334155; 
+    border-radius: 20px; 
+    outline: none; 
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.search-box input::placeholder {
+    color: #94a3b8;
+}
+
+.search-box input:focus {
+    border-color: #00b4d8; /* Cyan outline focus state */
+}
+
+.user-list { 
+    flex: 1; 
+    overflow-y: auto; 
+    list-style: none; 
+    background-color: #000000;
+}
+
+.user-item { 
+    padding: 12px 20px; 
+    border-bottom: 1px solid #1e252b; 
+    cursor: pointer; 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+    transition: 0.2s; 
+    position: relative; 
+    color: #ffffff;
+}
+
+.user-item:hover { 
+    background-color: #0b1a30; /* Transitions to Midnight Blue on hover */
+}
+
+.user-item.active { 
+    background-color: #112233; 
+    border-left: 4px solid #00b4d8; /* Cyan active accent line */
+}
+
+.list-avatar { 
+    width: 40px; 
+    height: 40px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    background: #1e252b; 
+}
+
+.status-dot { 
+    width: 10px; 
+    height: 10px; 
+    background-color: #00b4d8; /* Cyan active status indicator */
+    border-radius: 50%; 
+    display: inline-block; 
+    box-shadow: 0 0 6px #00b4d8; 
+    margin-left: auto; 
+}
+
+/* Chat Main View Styles */
+.chat-area { 
+    flex: 1; 
+    display: flex; 
+    flex-direction: column; 
+    background: #12161a; /* Dark sleek chat background matrix */
+}
+
+.chat-header { 
+    padding: 15px 20px; 
+    background-color: #000000; /* Pure Black Header */
+    border-bottom: 1px solid #1e252b; 
+    font-weight: bold; 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+    color: #ffffff;
+}
+
+.chat-header .status-dot { 
+    margin-left: 0; 
+}
+
+.messages-container { 
+    flex: 1; 
+    padding: 20px; 
+    overflow-y: auto; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 10px; 
+}
+
+/* Message Node Configurations */
+.msg { 
+    max-width: 50%; 
+    padding: 10px 14px; 
+    border-radius: 12px; 
+    font-size: 15px; 
+    display: flex; 
+    flex-direction: column; 
+    word-wrap: break-word; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.msg.sent { 
+    background-color: #0b1a30; /* Midnight Blue for sent messages */
+    color: #ffffff;
+    align-self: flex-end; 
+    border-top-right-radius: 0; 
+    border: 1px solid #112a4a;
+}
+
+.msg.received { 
+    background-color: #1e252b; /* Dark Grey for received messages */
+    color: #ffffff;
+    align-self: flex-start; 
+    border-top-left-radius: 0; 
+    border: 1px solid #334155;
+}
+
+.msg img { 
+    max-width: 100%; 
+    max-height: 250px; 
+    border-radius: 8px; 
+    margin-bottom: 6px; 
+    object-fit: cover; 
+}
+
+.msg-time { 
+    font-size: 10px; 
+    color: #94a3b8; /* Soft slate grey time */
+    align-self: flex-end; 
+    margin-top: 4px; 
+}
+
+/* Controller Command Inputs */
+.chat-input-area { 
+    padding: 15px; 
+    background-color: #000000; /* Pure Black input deck container */
+    display: flex; 
+    gap: 12px; 
+    align-items: center; 
+    border-top: 1px solid #1e252b;
+}
+
+.chat-input-area input[type="text"] { 
+    flex: 1; 
+    padding: 12px 18px; 
+    background-color: #1e252b;
+    border: 1px solid #334155; 
+    border-radius: 24px; 
+    outline: none; 
+    font-size: 15px; 
+    color: #ffffff;
+}
+
+.chat-input-area input[type="text"]:focus {
+    border-color: #00b4d8;
+}
+
+.chat-input-area input[type="text"]:disabled {
+    background-color: #0a0e12;
+    color: #475569;
+    border-color: #1e252b;
+}
+
+.image-upload-label { 
+    cursor: pointer; 
+    font-size: 20px; 
+    color: #00b4d8; /* Cyan Upload Icon */
+    padding: 5px; 
+    user-select: none; 
+    transition: 0.2s;
+}
+
+.image-upload-label:hover {
+    color: #0096c7;
+    transform: scale(1.1);
+}
+
+.chat-input-area button { 
+    background-color: #00b4d8; /* High Contrast Cyan Button */
+    color: #0b1a30; /* Midnight blue text for optimal visibility */
+    border: none; 
+    padding: 11px 28px; 
+    border-radius: 24px; 
+    cursor: pointer; 
+    font-weight: bold; 
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    transition: 0.2s;
+}
+
+.chat-input-area button:hover { 
+    background-color: #0096c7; 
+}
+
+.chat-input-area button:disabled {
+    background-color: #1e252b;
+    color: #475569;
+    cursor: not-allowed;
+}
+
+#file-input { 
+    display: none; 
+}
+
+/* Interactive Overlay Components (Modal) */
+.modal { 
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0; 
+    top: 0; 
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.7); 
+    justify-content: center; 
+    align-items: center; 
+}
+
+.modal-content { 
+    background-color: #000000; /* Pure Black modal canvas */
+    border: 1px solid #334155;
+    padding: 30px; 
+    border-radius: 10px; 
+    width: 350px; 
+    text-align: center; 
+    position: relative; 
+    color: #ffffff;
+}
+
+.close-modal { 
+    position: absolute; 
+    top: 15px; 
+    right: 20px; 
+    font-size: 24px; 
+    cursor: pointer; 
+    color: #94a3b8; 
+    transition: 0.2s;
+}
+
+.close-modal:hover {
+    color: #00b4d8;
+}
+
+.modal-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.modal-avatar { 
+    width: 120px; 
+    height: 120px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    margin: 15px auto; 
+    border: 3px solid #00b4d8; /* Cyan profile crop ring */
+    display: block; 
+    background: #1e252b; 
+}
+
+.modal-content input[type="file"] { 
+    margin: 20px 0; 
+    font-size: 12px; 
+    display: block; 
+    width: 100%; 
+    color: #94a3b8;
+}
+
+.modal-content button { 
+    background-color: #00b4d8; 
+    color: #0b1a30; 
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    width: 100%; 
+    font-weight: bold; 
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    transition: 0.2s;
+}
+
+.modal-content button:hover {
+    background-color: #0096c7;
+}
+
+/* Custom Scrollbar for sleek dark layout integration */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #000000;
+}
+::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #00b4d8;
+}

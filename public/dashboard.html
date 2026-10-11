@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+    <!-- Left Sidebar: Directory Panel -->
+    <div class="sidebar">
+        <div class="user-profile">
+            <img id="current-user-avatar" class="profile-avatar" onclick="openModal()" alt="Avatar" src="">
+            <div class="profile-info">
+                <h3 id="current-user-name">Loading...</h3>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </div>
+        <div class="search-box">
+            <input type="text" id="search-input" placeholder="Search contacts..." oninput="filterUsers()">
+        </div>
+        <ul class="user-list" id="users-directory"></ul>
+    </div>
+
+    <!-- Right Workspace: Interactive Messaging Frame -->
+    <div class="chat-area">
+        <div class="chat-header" id="active-chat-partner">Select a contact to begin messaging</div>
+        <div class="messages-container" id="messages-box"></div>
+        <div class="chat-input-area">
+            <label for="file-input" class="image-upload-label">📷</label>
+            <input type="file" id="file-input" accept="image/*" onchange="sendImage(this)">
+            <input type="text" id="message-input" placeholder="Type a message..." disabled>
+            <button id="send-btn" onclick="sendMessage()" disabled>Send</button>
+        </div>
+    </div>
+
+    <!-- Hidden Component: User Profile Adjustment Modal -->
+    <div id="profile-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2>My Profile</h2>
+            <p id="modal-email" style="color:#777; font-size:13px; margin-bottom:15px;"></p>
+            <img id="modal-avatar-preview" class="modal-avatar" alt="Avatar Preview" src="">
+            <form id="profile-upload-form" onsubmit="uploadProfilePic(event)">
+                <input type="file" id="new-avatar-input" accept="image/*" required>
+                <button type="submit">Update Photo</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- App Engine Execution Layer Script -->
+    <script src="dashboard.js"></script>
+</body>
+</html>

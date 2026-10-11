@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Dashboard</title>
+    <link rel="stylesheet" href="chat.css">
+</head>
+<body>
+
+<div class="chat-container" id="chatContainer">
+    <!-- Left Sidebar: Contacts/Conversations -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2>Messages</h2>
+            <div class="search-box">
+                <input type="text" placeholder="Search contacts...">
+            </div>
+        </div>
+        
+        <ul class="contact-list">
+            <li class="contact-item active" onclick="switchMobileView()">
+                <div class="avatar">JD</div>
+                <div class="contact-info">
+                    <div class="contact-name-row">
+                        <span class="contact-name">Jane Doe</span>
+                        <span class="timestamp">10:42 PM</span>
+                    </div>
+                    <p class="last-message">That sounds great! Let's build it.</p>
+                </div>
+            </li>
+            
+            <li class="contact-item" onclick="switchMobileView()">
+                <div class="avatar" style="background-color: #0b1a30; border: 1px solid #00b4d8;">AS</div>
+                <div class="contact-info">
+                    <div class="contact-name-row">
+                        <span class="contact-name">Alex Smith</span>
+                        <span class="timestamp">Yesterday</span>
+                    </div>
+                    <p class="last-message">Did you review the repository?</p>
+                </div>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Right Area: Open Chat Box -->
+    <main class="chat-window">
+        <!-- Chat Header -->
+        <header class="chat-header">
+    <div class="chat-header-info" style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
+        <div style="display: flex; align-items: center;">
+            <button class="back-btn" id="backBtn" onclick="switchMobileView()">&larr;</button>
+            <div class="avatar">JD</div>
+            <div>
+                <h3>Jane Doe</h3>
+                <span class="status-indicator online">Online</span>
+            </div>
+        </div>
+        <!-- Logout action link -->
+        <a href="/logout" style="color: #64748b; font-size: 0.85rem; text-decoration: none; border: 1px solid #334155; padding: 5px 12px; border-radius: 15px; transition: color 0.2s;">Logout</a>
+    </div>
+</header>
+
+
+        <!-- Messages History -->
+        <div class="message-area">
+            <div class="message-wrapper received">
+                <div class="message-bubble">
+                    Hey! Did you finish updating the CSS theme colors for the project dashboard?
+                </div>
+                <span class="message-time">10:38 PM</span>
+            </div>
+
+            <div class="message-wrapper sent">
+                <div class="message-bubble">
+                    Yes! I went with Midnight Blue, Cyan Blue, Grey, and Black. It looks incredibly clean.
+                </div>
+                <span class="message-time">10:40 PM</span>
+            </div>
+
+            <div class="message-wrapper received">
+                <div class="message-bubble">
+                    That sounds great! Let's build it.
+                </div>
+                <span class="message-time">10:42 PM</span>
+            </div>
+        </div>
+
+        <!-- Message Input Footer -->
+        <footer class="chat-footer">
+            <form class="input-form" id="chatForm">
+                <input type="text" id="messageInput" placeholder="Type a message..." autocomplete="off" required>
+                <button type="submit">Send</button>
+            </form>
+        </footer>
+    </main>
+</div>
+
+<script>
+    // Handle message sending simulation
+    const form = document.getElementById('chatForm');
+    const input = document.getElementById('messageInput');
+    const messageArea = document.querySelector('.message-area');
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if(!input.value.trim()) return;
+
+        const wrapper = document.createElement('div');
+        wrapper.className = 'message-wrapper sent';
+        
+        const bubble = document.createElement('div');
+        bubble.className = 'message-bubble';
+        bubble.textContent = input.value;
+        
+        const time = document.createElement('span');
+        time.className = 'message-time';
+        time.textContent = 'Just Now';
+
+        wrapper.appendChild(bubble);
+        wrapper.appendChild(time);
+        messageArea.appendChild(wrapper);
+        
+        input.value = '';
+        messageArea.scrollTop = messageArea.scrollHeight;
+    });
+
+    // Mobile viewport screen toggle toggler
+    function switchMobileView() {
+        const container = document.getElementById('chatContainer');
+        container.classList.toggle('show-chat-window');
+    }
+</script>
+</body>
+</html>
