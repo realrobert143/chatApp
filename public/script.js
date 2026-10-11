@@ -11,8 +11,9 @@ signInButton.addEventListener('click', () => {
     container.classList.remove("right-panel-active");
 });
 
-// --- BACKEND DATABASE CONNECTIONS ---
-const BACKEND_URL = 'http://localhost:5000/api';
+// Automatically switch backend URL depending on environment
+// Automatically switch backend URL depending on environment
+const BACKEND_URL = process.env.BACKEND_URL || 'http//localhost:5000'
 
 // Handle Sign Up Submission
 document.querySelector('.sign-up-container form').addEventListener('submit', async (e) => {

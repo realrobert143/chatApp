@@ -4,9 +4,8 @@ let pollInterval = null;
 let allCachedUsers = [];
 
 // Automatically switch backend URL depending on environment
-const BACKEND_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-    ? 'http://localhost:5000'
-    : 'https://chat-app-vvjs.onrender.com'; // You will get this URL from Render in Phase 2
+const BACKEND_URL = process.env.BACKEND_URL || 'http//localhost:5000'
+
 
 
 
