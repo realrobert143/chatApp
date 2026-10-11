@@ -136,7 +136,7 @@ async function sendMessage() {
     formData.append('message_type', 'text');
 
     try {
-        const response = await fetch('${BACKEND_URL}/api/messages', { method: 'POST', body: formData });
+        const response = await fetch(`${BACKEND_URL}/api/messages`, { method: 'POST', body: formData });
         if (response.ok) { 
             input.value = ''; 
             loadChatHistory(); 
@@ -154,7 +154,7 @@ async function sendImage(fileInput) {
     formData.append('image_file', fileInput.files[0]);
 
     try {
-        const response = await fetch('${BACKEND_URL}/api/messages', { method: 'POST', body: formData });
+        const response = await fetch(`${BACKEND_URL}/api/messages`, { method: 'POST', body: formData });
         if (response.ok) { 
             fileInput.value = ''; 
             loadChatHistory(); 
@@ -183,7 +183,7 @@ async function uploadProfilePic(event) {
     formData.append('profile_pic', fileInput.files[0]);
 
     try {
-        const response = await fetch('${BACKEND_URL}/api/users/profile-pic', { method: 'POST', body: formData });
+        const response = await fetch(`${BACKEND_URL}/api/users/profile-pic`, { method: 'POST', body: formData });
         const data = await response.json();
         if (response.ok) {
             loggedInUser = data.user;
