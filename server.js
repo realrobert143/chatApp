@@ -50,6 +50,28 @@ const pool = new Pool({
     }
 });
 
+
+// Automatically create the users table if it doesn't exist
+const initializeDatabase = async () => {
+  try {
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS users (
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(100) NOT NULL,
+        email VARCHAR(100) UNIQUE NOT NULL,
+        password VARCHAR(255) NOT NULL,
+        profile_pic TEXT DEFAULT 'resource/default_profile_pic.png',
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+    console.log('Database tables verified/created successfully.');
+  } catch (err) {
+    console.error('Error initializing database tables:', err);
+  }
+};
+
+initializeDatabase();
+
 // ==========================================
 // 1. REGISTRATION ENDPOINT (SIGN UP)
 // ==========================================
@@ -68,7 +90,7 @@ app.post('/api/signup', async (req, res) => {
         const defaultPic = 'resource/default_profile_pic.png'; 
         
         const newUser = await pool.query(
-            'INSERT INTO users (name, password, email, profile_pic) VALUES ($1, $2, $3, $4) RETURNING id, name, email, profile_pic',
+            'INSERT INTO users (name, password, email, profile_pic) VALUES ($1, $2, $3, $4) RETURNING *',
             [name, hashedPassword, email, defaultPic]
         );
         res.status(201).json({ message: 'User registered successfully!', user: newUser.rows[0] });
