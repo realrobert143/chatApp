@@ -23,7 +23,7 @@ document.querySelector('.sign-up-container form').addEventListener('submit', asy
     const password = e.target.querySelector('input[placeholder="Password"]').value;
 
     try {
-        const response = await fetch(`${BACKEND_URL}/signup`, {
+        const response = await fetch(`${BACKEND_URL}/api/signup`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name, email, password })
@@ -50,7 +50,7 @@ document.querySelector('.sign-in-container form').addEventListener('submit', asy
     const password = e.target.querySelector('input[placeholder="Password"]').value;
 
     try {
-        const response = await fetch(`${BACKEND_URL}/signin`, {
+        const response = await fetch(`${BACKEND_URL}/api/signin`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password })

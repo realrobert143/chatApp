@@ -53,7 +53,7 @@ const pool = new Pool({
 // ==========================================
 // 1. REGISTRATION ENDPOINT (SIGN UP)
 // ==========================================
-app.post('${BACKEND_URL}/api/signup', async (req, res) => {
+app.post('/api/signup', async (req, res) => {
     const { name, email, password } = req.body;
     try {
         const userExist = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
@@ -81,7 +81,7 @@ app.post('${BACKEND_URL}/api/signup', async (req, res) => {
 // ==========================================
 // 2. AUTHENTICATION ENDPOINT (SIGN IN)
 // ==========================================
-app.post('${BACKEND_URL}/api/signin', async (req, res) => {
+app.post('/api/signin', async (req, res) => {
     const { email, password } = req.body;
     try {
         const userResult = await pool.query('SELECT * FROM users WHERE email = \$1', [email]);
@@ -108,7 +108,7 @@ app.post('${BACKEND_URL}/api/signin', async (req, res) => {
 // ==========================================
 // 3. RETRIEVE ALL ACTIVE SYSTEM CONTACTS
 // ==========================================
-app.get('${BACKEND_URL}/api/users', async (req, res) => {
+app.get('/api/users', async (req, res) => {
     try {
         const allUsers = await pool.query('SELECT id, name, email, profile_pic FROM users ORDER BY name ASC');
         res.status(200).json(allUsers.rows);
@@ -121,7 +121,7 @@ app.get('${BACKEND_URL}/api/users', async (req, res) => {
 // ==========================================
 // 4. UPDATE USER PROFILE PICTURE FILE
 // ==========================================
-app.post('${BACKEND_URL}/api/users/profile-pic', upload.single('profile_pic'), async (req, res) => {
+app.post('/api/users/profile-pic', upload.single('profile_pic'), async (req, res) => {
     const { userId } = req.body;
     if (!req.file) return res.status(400).json({ message: 'No image asset submitted' });
     
@@ -141,7 +141,7 @@ app.post('${BACKEND_URL}/api/users/profile-pic', upload.single('profile_pic'), a
 // ==========================================
 // 5. SEND MESSAGE (SUPPORTS TEXT AND IMAGES)
 // ==========================================
-app.post('${BACKEND_URL}/api/messages', upload.single('image_file'), async (req, res) => {
+app.post('/api/messages', upload.single('image_file'), async (req, res) => {
     const { sender_id, receiver_id, message_text, message_type } = req.body;
     let fileUrl = null;
 
@@ -167,7 +167,7 @@ app.post('${BACKEND_URL}/api/messages', upload.single('image_file'), async (req,
 // ==========================================
 // 6. RETRIEVE CHAT HISTORY LOGS
 // ==========================================
-app.get('${BACKEND_URL}/api/messages/:user1/:user2', async (req, res) => {
+app.get('/api/messages/:user1/:user2', async (req, res) => {
     const { user1, user2 } = req.params;
     try {
         const history = await pool.query(
