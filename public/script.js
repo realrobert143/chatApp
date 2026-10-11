@@ -12,7 +12,6 @@ signInButton.addEventListener('click', () => {
 });
 
 // Automatically switch backend URL depending on environment
-// Automatically switch backend URL depending on environment
 const BACKEND_URL = process.env.BACKEND_URL || 'http//localhost:5000'
 
 // Handle Sign Up Submission
