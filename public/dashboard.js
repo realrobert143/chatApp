@@ -4,7 +4,7 @@ let pollInterval = null;
 let allCachedUsers = [];
 
 // Automatically switch backend URL depending on environment
-const BACKEND_URL = import.meta.env.BACKEND_URL || 'http//localhost:5000'
+const BACKEND_URL = 'https://chatapp-hsyo.onrender.com' || 'http//localhost:5000'
 
 
 
