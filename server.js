@@ -63,6 +63,16 @@ const initializeDatabase = async () => {
         profile_pic TEXT DEFAULT 'resource/default_profile_pic.png',
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
+      CREATE TABLE IF NOT EXISTS messages (
+        id SERIAL PRIMARY KEY,
+        sender_id INT REFERENCES users(id) ON DELETE CASCADE,
+        receiver_id INT REFERENCES users(id) ON DELETE CASCADE,
+        message_text TEXT NOT NULL,
+        message_type VARCHAR(10) DEFAULT 'text',
+        file_url VARCHAR(255),
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+
     `);
     console.log('Database tables verified/created successfully.');
   } catch (err) {
